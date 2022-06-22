@@ -9,7 +9,7 @@ services:
       - 3000:3000
   wordpress:
     container_name: wordpress
-    restart: wordpress
+    restart: always
     build: ./srcs/wordpress
     ports:
       - 3001:3001

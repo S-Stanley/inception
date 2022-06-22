@@ -2,12 +2,13 @@ FROM debian:buster
 
 RUN apt-get update
 
-RUN apt-get update
+RUN mkdir -p /var/www/html
+RUN cd /var/www/html
+RUN mkdir farhan
+RUN cd farhan
 RUN apt-get install wget -y
-RUN cd /tmp && wget http://wordpress.org/latest.zip
-RUN mkdir -p /var/www/wordpress
-RUN apt install unzip
-RUN unzip latest.zip -d /var/www/wordpress/
-RUN chmod -R 777 /var/www
+RUN apt-get install unzip -y
+RUN wget https://wordpress.org/latest.zip
+RUN unzip latest.zip
 
-CMD tail -f /var/log/nginx/*
+CMD tail -f /var/log/*
