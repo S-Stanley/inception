@@ -3,6 +3,21 @@ version: '3'
 services:
   nginx:
     container_name: nginx
-    image: nginx
+    build: ./srcs/nginx/
+    restart: always
     ports:
       - 3000:3000
+  wordpress:
+    container_name: wordpress
+    restart: always
+    build: ./srcs/wordpress
+    ports:
+      - 3001:3001
+  maria-db:
+    container_name: mariadb
+    build: ./srcs/mariadb
+    restart: always
+    ports:
+      - 3002:3002
+    environment:
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=true
