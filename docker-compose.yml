@@ -4,19 +4,19 @@ services:
   nginx:
     container_name: nginx
     build: ./srcs/nginx/
-    restart: always
+    restart: on-failure
     ports:
       - 3000:3000
   wordpress:
     container_name: wordpress
-    restart: always
+    restart: on-failure
     build: ./srcs/wordpress
     ports:
       - 3001:3001
   maria-db:
     container_name: mariadb
     build: ./srcs/mariadb
-    restart: always
+    restart: on-failure
     ports:
       - 3002:3002
     environment:
