@@ -6,7 +6,7 @@ services:
     build: ./srcs/nginx/
     restart: on-failure
     ports:
-      - 3000:3000
+      - 80:80
   wordpress:
     container_name: wordpress
     restart: on-failure
