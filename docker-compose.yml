@@ -21,3 +21,5 @@ services:
       - 3002:3002
     environment:
       - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=true
+    volumes:
+      - /home/sserbin/data:/var/lib/mysql
