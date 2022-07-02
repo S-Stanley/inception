@@ -1,25 +1,30 @@
 version: '3'
 
 services:
-  nginx:
-    container_name: nginx
-    build: ./srcs/nginx/
-    restart: on-failure
+  # nginx:
+  #   container_name: nginx
+  #   build: ./srcs/nginx/
+  #   restart: on-failure
+  #   ports:
+  #     - "127.0.0.1:443:443"
+  all_services:
+    container_name: all_services
+    build: srcs/all_services
     ports:
-      - 3000:3000
-  wordpress:
-    container_name: wordpress
-    restart: on-failure
-    build: ./srcs/wordpress
-    ports:
-      - 3001:3001
-  maria-db:
-    container_name: mariadb
-    build: ./srcs/mariadb
-    restart: on-failure
-    ports:
-      - 3002:3002
-    environment:
-      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=true
-    volumes:
-      - /home/sserbin/data:/var/lib/mysql
+      - "127.0.0.1:443:443"
+  # wordpress:
+  #   container_name: wordpress
+  #   restart: on-failure
+  #   build: ./srcs/wordpress
+  #   ports:
+  #     - 3001:3001
+  # maria-db:
+  #   container_name: mariadb
+  #   build: ./srcs/mariadb
+  #   restart: on-failure
+  #   ports:
+  #     - 3002:3002
+  #   environment:
+  #     - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=true
+  #   volumes:
+  #     - /home/sserbin/data:/var/lib/mysql
