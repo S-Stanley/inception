@@ -1,7 +1,7 @@
 FROM debian:buster
 
 RUN apt update -y
-RUN apt install nginx mariadb-server php-fpm php-mysql zip wget openssl  -y
+RUN apt install nginx php-fpm php-mysql zip wget openssl  -y
 
 COPY . /app
 WORKDIR /app
@@ -21,7 +21,7 @@ RUN wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-all-
 RUN mkdir /var/www/wordpress/phpmyadmin
 RUN tar -xvf phpMyAdmin-4.9.0.1-all-languages.tar.gz --strip-components 1 -C /var/www/wordpress/phpmyadmin
 RUN cat /app/nginx-config > /etc/nginx/sites-available/default
-RUN /etc/init.d/mysql start && echo "create database wordpress; create user wordpressuser; set password for wordpressuser = PASSWORD('user42'); GRANT ALL PRIVILEGES ON wordpress.* TO wordpressuser@localhost IDENTIFIED by 'user42';" | mysql
+# RUN /etc/init.d/mysql start && echo "create database wordpress; create user wordpressuser; set password for wordpressuser = PASSWORD('user42'); GRANT ALL PRIVILEGES ON wordpress.* TO wordpressuser@localhost IDENTIFIED by 'user42';" | mysql
 
 
-CMD /etc/init.d/php7.3-fpm start && /etc/init.d/mysql start && /etc/init.d/nginx start && sleep infinity
+CMD /etc/init.d/php7.3-fpm start && /etc/init.d/nginx start && sleep infinity
