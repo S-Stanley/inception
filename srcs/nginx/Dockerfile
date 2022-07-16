@@ -12,6 +12,4 @@ RUN openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ngi
 RUN chmod 777 -R /etc/nginx/ssl
 RUN cat /app/nginx-config > /etc/nginx/sites-available/default
 
-RUN /etc/init.d/nginx start
-
-CMD tail -f /var/log/nginx/*
+CMD ["nginx", "-g", "daemon off;"]
