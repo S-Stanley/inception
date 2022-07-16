@@ -15,6 +15,7 @@ services:
   mariadb:
     container_name: mariadb
     build: srcs/mariadb
+    restart: on-failure
     expose:
       - "3306"
     ports:
@@ -26,6 +27,7 @@ services:
   wordpress:
     container_name: wordpress
     build: srcs/wordpress
+    restart: on-failure
     ports:
       - "9000:9000"
     expose:
