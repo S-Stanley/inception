@@ -10,6 +10,8 @@ services:
     ports:
       - "127.0.0.1:443:443"
       - "127.0.0.1:80:80"
+    networks:
+      - inception_network
   mariadb:
     container_name: mariadb
     build: srcs/mariadb
@@ -19,8 +21,8 @@ services:
      - "3306:3306"
     volumes:
       - mysql_volume:/var/lib/mysql
-    # networks:
-    #   - inception_network
+    networks:
+      - inception_network
   wordpress:
     container_name: wordpress
     build: srcs/wordpress
@@ -28,16 +30,19 @@ services:
       - "9000:9000"
     expose:
       - "9000"
-    # networks:
-    #   - inception_network
+    networks:
+      inception_network:
+        ipv4_address: 172.22.0.3
     depends_on:
       - mariadb
     volumes:
       - wordpress_volume:/var/www/html
 
-# networks:
-#   inception_network:
-#     name: inception_network
+networks:
+  inception_network:
+    ipam:
+      config:
+        - subnet: "172.22.0.0/24"
 
 volumes:
   wordpress_volume:
