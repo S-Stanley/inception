@@ -10,8 +10,6 @@ services:
     ports:
       - "127.0.0.1:443:443"
       - "127.0.0.1:80:80"
-    # volumes:
-    #   - wordpress_volume:/var/www/wordpress/
   mariadb:
     container_name: mariadb
     build: srcs/mariadb
@@ -19,6 +17,8 @@ services:
       - "3306"
     ports:
      - "3306:3306"
+    volumes:
+      - mysql_volume:/var/lib/mysql
     # networks:
     #   - inception_network
   wordpress:
@@ -34,20 +34,6 @@ services:
       - mariadb
     volumes:
       - wordpress_volume:/var/www/html
-  # wordpress:
-  #   container_name: wordpress
-  #   restart: on-failure
-  #   build: ./srcs/wordpress
-  #   ports:
-  #     - 3001:3001
-  # maria-db:
-  #   container_name: mariadb
-  #   build: ./srcs/mariadb
-  #   restart: on-failure
-  #   ports:
-  #     - 3002:3002
-  #   environment:
-  #     - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=true
 
 # networks:
 #   inception_network:
@@ -55,4 +41,6 @@ services:
 
 volumes:
   wordpress_volume:
+    external: true
+  mysql_volume:
     external: true
