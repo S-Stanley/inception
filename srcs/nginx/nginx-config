@@ -1,21 +1,27 @@
 server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	server_name sserbin.42.fr;
+	return 301 https://$server_name$request_uri;
+}
+
+server {
+
+	listen 443 ssl;
+	listen [::]:443 ssl;
 
 	server_name sserbin.42.fr;
 
-	location /wordpress {
-		proxy_pass http://172.22.0.3:9000/wordpress/;
-        	proxy_http_version 1.1;
-        	proxy_set_header Upgrade $http_upgrade;
-        	proxy_set_header Connection 'upgrade';
-        	proxy_set_header Host $host;
-        	proxy_cache_bypass $http_upgrade;
-	}
+	ssl_certificate /etc/nginx/ssl/localhost.pem;
+	ssl_certificate_key /etc/nginx/ssl/localhost.key;
+	ssl_protocols TLSv1.2 TLSv1.3;
+
 	location / {
 		proxy_pass http://172.22.0.3:9000/wordpress/;
-        	proxy_http_version 1.1;
-        	proxy_set_header Upgrade $http_upgrade;
-        	proxy_set_header Connection 'upgrade';
-        	proxy_set_header Host $host;
-        	proxy_cache_bypass $http_upgrade;
+			proxy_http_version 1.1;
+			proxy_set_header Upgrade $http_upgrade;
+			proxy_set_header Connection 'upgrade';
+			proxy_set_header Host $host;
+			proxy_cache_bypass $http_upgrade;
 	}
 }
