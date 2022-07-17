@@ -24,6 +24,8 @@ services:
       - mysql_volume:/var/lib/mysql
     networks:
       - inception_network
+    environment:
+      - DB_USER_PASS=${DB_USER_PASS}
   wordpress:
     container_name: wordpress
     build: srcs/wordpress
@@ -39,6 +41,22 @@ services:
       - mariadb
     volumes:
       - wordpress_volume:/var/www/html
+    environment:
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_CHARSET=${DB_CHARSET}
+      - WP_SITEURL=${WP_SITEURL}
+      - WP_HOME=${WP_HOME}
+      - AUTH_KEY=${AUTH_KEY}
+      - SECURE_AUTH_KEY=${SECURE_AUTH_KEY}
+      - LOGGED_IN_KEY=${LOGGED_IN_KEY}
+      - NONCE_KEY=${NONCE_KEY}
+      - AUTH_SALT=${AUTH_SALT}
+      - SECURE_AUTH_SALT=${SECURE_AUTH_SALT}
+      - LOGGED_IN_SALT=${LOGGED_IN_SALT}
+      - NONCE_SALT=${NONCE_SALT}
 
 networks:
   inception_network:
