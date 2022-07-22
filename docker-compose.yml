@@ -9,9 +9,9 @@ services:
       - wordpress
     ports:
       - "443:443"
-      - "80:80"
     networks:
       - inception_network
+      - outside_network
   mariadb:
     container_name: mariadb
     build: srcs/mariadb
@@ -63,9 +63,19 @@ networks:
     ipam:
       config:
         - subnet: "172.22.0.0/24"
-
+    internal: true
+  outside_network:
+    internal: false
 volumes:
   wordpress_volume:
-    external: true
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/sserbin/data/wordpress'
   mysql_volume:
-    external: true
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/sserbin/data/mysql'
