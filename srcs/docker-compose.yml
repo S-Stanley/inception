@@ -3,7 +3,7 @@ version: '3'
 services:
   nginx:
     container_name: nginx
-    build: ./srcs/nginx/
+    build: ./requirements/nginx/
     restart: on-failure
     depends_on:
       - wordpress
@@ -14,7 +14,7 @@ services:
       - outside_network
   mariadb:
     container_name: mariadb
-    build: srcs/mariadb
+    build: requirements/mariadb
     restart: on-failure
     expose:
       - "3306"
@@ -28,7 +28,7 @@ services:
       - DB_USER_PASS=${DB_USER_PASS}
   wordpress:
     container_name: wordpress
-    build: srcs/wordpress
+    build: requirements/wordpress
     restart: on-failure
     ports:
       - "9000:9000"

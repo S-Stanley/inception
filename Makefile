@@ -1,7 +1,5 @@
 all:
-	docker-compose up --build -d
-build:
-	docker-compose up --build
+	docker-compose -f srcs/docker-compose.yml up --build -d
 down:
 	docker stop nginx wordpress mariadb
 clean:
@@ -9,6 +7,6 @@ clean:
 list:
 	docker ps
 logs:
-	docker logs nginx
+	docker-compsoe logs -f
 
-.PHONY: all down clean list build logs
+.PHONY: all down clean list logs
