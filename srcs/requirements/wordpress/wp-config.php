@@ -37,9 +37,6 @@ define( 'DB_CHARSET', getenv('DB_CHARSET') );
 /** The Database Collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
 
-define('WP_SITEURL', getenv('WP_SITEURL'));
-define('WP_HOME', getenv('WP_HOME'));
-
 /**#@+
  * Authentication Unique Keys and Salts.
  *

@@ -1,17 +1,17 @@
 version: '3'
 
 services:
-  nginx:
-    container_name: nginx
-    build: ./requirements/nginx/
-    restart: on-failure
-    depends_on:
-      - wordpress
-    ports:
-      - "443:443"
-    networks:
-      - inception_network
-      - outside_network
+  # nginx:
+  #   container_name: nginx
+  #   build: ./requirements/nginx/
+  #   restart: on-failure
+  #   depends_on:
+  #     - wordpress
+  #   ports:
+  #     - "443:443"
+  #   networks:
+  #     - inception_network
+  #     - outside_network
   mariadb:
     container_name: mariadb
     build: requirements/mariadb
@@ -63,19 +63,16 @@ networks:
     ipam:
       config:
         - subnet: "172.22.0.0/24"
-    internal: true
-  outside_network:
-    internal: false
 volumes:
   wordpress_volume:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/sserbin/data/wordpress'
+      device: '/Users/stan/Projects/42/inception/volumes/wordpress'
   mysql_volume:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/sserbin/data/mysql'
+      device: '/Users/stan/Projects/42/inception/volumes/mysql'
