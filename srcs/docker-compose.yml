@@ -1,17 +1,18 @@
 version: '3'
 
 services:
-  # nginx:
-  #   container_name: nginx
-  #   build: ./requirements/nginx/
-  #   restart: on-failure
-  #   depends_on:
-  #     - wordpress
-  #   ports:
-  #     - "443:443"
-  #   networks:
-  #     - inception_network
-  #     - outside_network
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx/
+    restart: on-failure
+    depends_on:
+      - wordpress
+    ports:
+      # - "443:443"
+      - "80:80"
+    networks:
+      - inception_network
+      # - outside_network
   mariadb:
     container_name: mariadb
     build: requirements/mariadb
@@ -47,8 +48,6 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_HOST=${DB_HOST}
       - DB_CHARSET=${DB_CHARSET}
-      - WP_SITEURL=${WP_SITEURL}
-      - WP_HOME=${WP_HOME}
       - AUTH_KEY=${AUTH_KEY}
       - SECURE_AUTH_KEY=${SECURE_AUTH_KEY}
       - LOGGED_IN_KEY=${LOGGED_IN_KEY}
