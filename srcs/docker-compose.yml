@@ -4,7 +4,7 @@ services:
   nginx:
     container_name: nginx
     build: ./requirements/nginx/
-    restart: on-failure
+    restart: always
     depends_on:
       - wordpress
     ports:
@@ -16,7 +16,7 @@ services:
   mariadb:
     container_name: mariadb
     build: requirements/mariadb
-    restart: on-failure
+    restart: always
     expose:
       - "3306"
     ports:
@@ -30,7 +30,7 @@ services:
   wordpress:
     container_name: wordpress
     build: requirements/wordpress
-    restart: on-failure
+    restart: always
     ports:
       - "9000:9000"
     expose:
