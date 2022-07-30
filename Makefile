@@ -2,8 +2,6 @@ all:
 	docker-compose -f srcs/docker-compose.yml up --build -d
 down:
 	docker-compose -f srcs/docker-compose.yml down
-clean:
-	bash clean.sh
 list:
 	docker ps
 logs:

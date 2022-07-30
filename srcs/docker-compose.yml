@@ -12,7 +12,7 @@ services:
       - "80:80"
     networks:
       - inception_network
-      # - outside_network
+      - outside_network
   mariadb:
     container_name: mariadb
     build: requirements/mariadb
@@ -62,6 +62,9 @@ networks:
     ipam:
       config:
         - subnet: "172.22.0.0/24"
+    internal: true
+  outside_network:
+    internal: false
 volumes:
   wordpress_volume:
     driver: local
