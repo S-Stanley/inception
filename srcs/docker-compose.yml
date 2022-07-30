@@ -4,18 +4,19 @@ services:
   nginx:
     container_name: nginx
     build: ./requirements/nginx/
-    restart: on-failure
+    restart: always
     depends_on:
       - wordpress
     ports:
       - "443:443"
+      - "80:80"
     networks:
       - inception_network
       - outside_network
   mariadb:
     container_name: mariadb
     build: requirements/mariadb
-    restart: on-failure
+    restart: always
     expose:
       - "3306"
     ports:
@@ -29,7 +30,7 @@ services:
   wordpress:
     container_name: wordpress
     build: requirements/wordpress
-    restart: on-failure
+    restart: always
     ports:
       - "9000:9000"
     expose:
@@ -44,11 +45,8 @@ services:
     environment:
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
       - DB_HOST=${DB_HOST}
       - DB_CHARSET=${DB_CHARSET}
-      - WP_SITEURL=${WP_SITEURL}
-      - WP_HOME=${WP_HOME}
       - AUTH_KEY=${AUTH_KEY}
       - SECURE_AUTH_KEY=${SECURE_AUTH_KEY}
       - LOGGED_IN_KEY=${LOGGED_IN_KEY}
@@ -72,10 +70,10 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/sserbin/data/wordpress'
+      device: '/Users/stan/Projects/42/inception/volumes/wordpress'
   mysql_volume:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/sserbin/data/mysql'
+      device: '/Users/stan/Projects/42/inception/volumes/mysql'

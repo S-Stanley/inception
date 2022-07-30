@@ -25,9 +25,6 @@ define( 'DB_NAME', getenv('DB_NAME') );
 /** MySQL database username */
 define( 'DB_USER', getenv('DB_USER') );
 
-/** MySQL database password */
-define( 'DB_PASSWORD', getenv('DB_PASSWORD') );
-
 /** MySQL hostname */
 define( 'DB_HOST', getenv('DB_HOST') );
 
@@ -36,9 +33,6 @@ define( 'DB_CHARSET', getenv('DB_CHARSET') );
 
 /** The Database Collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
-
-define('WP_SITEURL', getenv('WP_SITEURL'));
-define('WP_HOME', getenv('WP_HOME'));
 
 /**#@+
  * Authentication Unique Keys and Salts.

@@ -1,12 +1,12 @@
 all:
 	docker-compose -f srcs/docker-compose.yml up --build -d
 down:
-	docker stop nginx wordpress mariadb
-clean:
-	docker system prune -a
+	docker-compose -f srcs/docker-compose.yml down
 list:
 	docker ps
 logs:
-	docker-compsoe logs -f
+	docker-compose -f srcs/docker-compose.yml logs -f
+stop:
+	docker stop $(docker ps -qa)
 
 .PHONY: all down clean list logs
