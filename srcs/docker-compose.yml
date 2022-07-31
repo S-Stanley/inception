@@ -70,10 +70,10 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/Users/stan/Projects/42/inception/volumes/wordpress'
+      device: '/home/sserbin/data/wordpress'
   mysql_volume:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/Users/stan/Projects/42/inception/volumes/mysql'
+      device: '/home/sserbin/data/mysql'
