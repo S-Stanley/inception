@@ -394,8 +394,8 @@ CREATE TABLE `wp_users` (
 
 LOCK TABLES `wp_users` WRITE;
 /*!40000 ALTER TABLE `wp_users` DISABLE KEYS */;
-INSERT INTO `wp_users` VALUES (1,'sserbin','$P$BCIRKeT9W16x765E43Z8Howk9Dc7px0','sserbin','test@email.com','http://sserbin.42.fr','2022-08-05 18:36:18','',0,'sserbin');
-INSERT INTO `wp_users` VALUES (2,'test','$P$BCIRKeT9W16x765E43Z8Howk9Dc7px0','test','test@user.com','http://sserbin.42.fr','2022-08-05 18:36:18','',0,'test');
+INSERT INTO `wp_users` VALUES (1,'sserbin', 'HASHED_PASS' ,'sserbin','test@email.com','http://sserbin.42.fr','2022-08-05 18:36:18','',0,'sserbin');
+INSERT INTO `wp_users` VALUES (2,'test', 'HASHED_PASS' ,'test','test@user.com','http://sserbin.42.fr','2022-08-05 18:36:18','',0,'test');
 /*!40000 ALTER TABLE `wp_users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

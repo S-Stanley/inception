@@ -14,7 +14,12 @@ services:
       - outside_network
   mariadb:
     container_name: mariadb
-    build: requirements/mariadb
+    build:
+      context: requirements/mariadb
+      args:
+        - DB_USER_PASS=${DB_USER_PASS}
+        - DB_ROOT_PASS=${DB_ROOT_PASS}
+        - HASHED_PASS=${HASHED_PASS}
     restart: always
     expose:
       - "3306"
@@ -25,11 +30,10 @@ services:
     networks:
       inception_network:
         ipv4_address: 172.22.0.4
-    environment:
-      - DB_USER_PASS=${DB_USER_PASS}
   wordpress:
     container_name: wordpress
-    build: requirements/wordpress
+    build:
+      context: requirements/wordpress
     restart: always
     ports:
       - "9000:9000"
@@ -55,7 +59,7 @@ services:
       - SECURE_AUTH_SALT=${SECURE_AUTH_SALT}
       - LOGGED_IN_SALT=${LOGGED_IN_SALT}
       - NONCE_SALT=${NONCE_SALT}
-      - PASSWORD_ADMIN_WORDPRESS=${PASSWORD_ADMIN_WORDPRESS}
+      - DB_PASSWORD=${DB_PASSWORD}
 
 networks:
   inception_network:
