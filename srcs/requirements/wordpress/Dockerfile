@@ -1,7 +1,7 @@
 FROM debian:buster
 
 RUN apt update -y
-RUN apt install php-fpm php-mysql zip wget  -y
+RUN apt install php-fpm php-mysql zip wget -y
 
 COPY . /app
 WORKDIR /app
@@ -11,8 +11,8 @@ RUN cd /tmp
 RUN wget http://wordpress.org/latest.zip
 RUN mkdir -p /var/www/html
 RUN unzip latest.zip -d /var/www/html/
-RUN chmod -R 777 /var/www
-RUN cat /app/wp-config.php > /var/www/html/wp-config.php
+RUN chmod -R 777 /app
+RUN cat /app/wp-config.php > /var/www/html/wordpress/wp-config.php
 
 RUN /etc/init.d/php7.3-fpm start
 
