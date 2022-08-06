@@ -1,4 +1,6 @@
 all:
+	mkdir -p /home/sserbin/data/mysql
+	mkdir -p /home/sserbin/data/wordpress
 	docker-compose -f srcs/docker-compose.yml up --build -d
 down:
 	docker-compose -f srcs/docker-compose.yml down
